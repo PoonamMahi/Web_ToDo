@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="text-center">
+
+
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Status</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" checked="@item.IsCompleted" onclick="window.location.href = '/Home/ToggleDone/@item.Id';" />
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.TodoDate.ToShortDateString()
+                    </td>
+                    <td>
+                        <a href="/Home/Delete/@item.Id" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
