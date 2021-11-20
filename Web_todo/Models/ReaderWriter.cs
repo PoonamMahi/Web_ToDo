@@ -14,6 +14,8 @@ namespace Web_todo.Models
             this.items = new List<ToDoModel>();
         }
 
+
+        //writer function
         public void Writer(ToDoModel model)
         {
             using (var db = DataAccess.DbAccess())
@@ -34,6 +36,7 @@ namespace Web_todo.Models
                 return this.items;
             }
 
+        //update function
             public void Update(int id, bool isDone)
             {
                 string updateQuery = "UPDATE ToDoTbl SET IsCompleted = @isDone WHERE Id = @Id";
@@ -46,6 +49,7 @@ namespace Web_todo.Models
                 }
             }
 
+        //delete function
             public void Delete(int id)
             {
                 var query = "DELETE FROM ToDoTbl WHERE Id = @Id";
