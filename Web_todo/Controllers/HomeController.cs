@@ -26,7 +26,7 @@ namespace Web_todo.Controllers
         public IActionResult Index()
         {
             data = dataaccess.Reader();
-            return View();
+            return View(data);
         }
 
         public IActionResult Manage()
@@ -45,9 +45,14 @@ namespace Web_todo.Controllers
             var records = dataaccess.Reader();
             if (records.Where(x => x.Id == id) != null)
             {
+                
                 ToDoModel model = new ToDoModel();
-                model = (ToDoModel)records.Where(x => x.Id == id);
-                model.IsCompleted = !model.IsCompleted;
+                foreach (var item in records)
+                {
+                    model.IsCompleted = !item.IsCompleted;
+                }
+                //model = (ToDoModel)records.Where(x => x.Id == id);
+                //model.IsCompleted = !model.IsCompleted;
                 dataaccess.Update(id, model.IsCompleted);
                 
             }

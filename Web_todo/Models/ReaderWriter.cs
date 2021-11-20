@@ -18,7 +18,8 @@ namespace Web_todo.Models
         {
             using (var db = DataAccess.DbAccess())
             {
-                string insertQuery = @"INSERT INTO [dbo].[Customer]([Title], [TodoDate], [IsCompleted]) VALUES (@Title, @TodoDate, @IsCompleted)";
+               
+                string insertQuery = @"INSERT INTO TODOTBL VALUES (@TODODATE, @TITLE, @ISCOMPLETED)";
                 var result = db.Execute(insertQuery, model);
 
             }
@@ -39,7 +40,7 @@ namespace Web_todo.Models
                 using (var db = DataAccess.DbAccess())
                 {
                     var parameters = new DynamicParameters();
-                    parameters.Add("@isDone", isDone, DbType.Binary);
+                    parameters.Add("@isDone", isDone, DbType.Byte);
                     parameters.Add("@Id", id, DbType.Int32);
                     db.Execute(updateQuery, parameters);
                 }
@@ -51,7 +52,7 @@ namespace Web_todo.Models
                 using (var db = DataAccess.DbAccess())
                 {
                     var parameters = new DynamicParameters();
-                    parameters.Add("@Id", id, DbType.Binary);
+                    parameters.Add("@Id", id, DbType.Int32);
                     db.Execute(query, parameters);
                 }
             }

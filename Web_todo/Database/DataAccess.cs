@@ -7,7 +7,7 @@ namespace Web_todo.Database
     {
         public static SqlConnection DbAccess()
         {
-            return new SqlConnection("Databaselink");
+            return new SqlConnection("Server=localhost;Database=TodoDb;User ID=sa;Password=Admin@123;");
 
         }
     }
